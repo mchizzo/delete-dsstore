@@ -1,3 +1,5 @@
+__author__ = 'chizzo'
+
 #!/bin/python
 
 #
@@ -33,7 +35,7 @@ if len(sys.argv) > 1:
 
 		# Runs through all files in the directory
 		for root, sub, files in os.walk(path):
-			
+
 			for file in files:
 
 				# Checks if exists .DS_Store file
@@ -47,10 +49,22 @@ if len(sys.argv) > 1:
 					os.remove(fullpath)
 					i += 1
 
+                # Checks if exists .localized file
+				if file == ".localized":
+
+					# Get full path of current .DS_Store file
+					fullpath = os.path.abspath(os.path.join(root, file))
+					print "Deleting " + fullpath
+
+					# Remove file
+					os.remove(fullpath)
+					i += 1
+
+
 		print str(i) + " files deleted";
 
 	elif sys.argv[1] == '--help':
-		
+
 		# Show help message
 		showhelp()
 
